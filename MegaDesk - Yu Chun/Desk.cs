@@ -8,11 +8,11 @@ namespace MegaDesk___Yu_Chun
 {
     public enum DesktopMaterial
     {
-        laminate, 
-        oak, 
-        rosewood, 
-        veneer, 
-        pine
+        Laminate, 
+        Oak, 
+        Rosewood, 
+        Veneer, 
+        Pine
     }
     public class Desk
     {
@@ -24,12 +24,10 @@ namespace MegaDesk___Yu_Chun
         public const short MIN_DESK_DRAWERS = 0;
         public const short MAX_DESK_DRAWERS = 7;
 
-
-
         // properties
         public decimal Width { get; set; }
         public decimal Depth { get; set; }
-        public int NumberOfDrawers { get; set; }
+        public decimal NumberOfDrawers { get; set; }
         public DesktopMaterial SurfaceMaterial { get; set; }
     }
 }

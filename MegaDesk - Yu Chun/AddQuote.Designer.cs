@@ -30,22 +30,24 @@ namespace MegaDesk___Yu_Chun
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.customerName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.widthUpDown = new System.Windows.Forms.NumericUpDown();
+            this.depthUpDown = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.drawerUpDown = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnGetQuote = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            this.deskMaterialComboBox = new System.Windows.Forms.ComboBox();
+            this.deskDeliveryComboBox = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.depthUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawerUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -58,12 +60,12 @@ namespace MegaDesk___Yu_Chun
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer Name: ";
             // 
-            // textBox1
+            // customerName
             // 
-            this.textBox1.Location = new System.Drawing.Point(313, 85);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(243, 20);
-            this.textBox1.TabIndex = 1;
+            this.customerName.Location = new System.Drawing.Point(313, 85);
+            this.customerName.Name = "customerName";
+            this.customerName.Size = new System.Drawing.Size(243, 20);
+            this.customerName.TabIndex = 1;
             // 
             // label2
             // 
@@ -102,45 +104,45 @@ namespace MegaDesk___Yu_Chun
             this.label5.TabIndex = 5;
             this.label5.Text = "Depth:";
             // 
-            // numericUpDown1
+            // widthUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(243, 176);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.widthUpDown.Location = new System.Drawing.Point(243, 176);
+            this.widthUpDown.Maximum = new decimal(new int[] {
             96,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.widthUpDown.Minimum = new decimal(new int[] {
             24,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 6;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.widthUpDown.Name = "widthUpDown";
+            this.widthUpDown.Size = new System.Drawing.Size(120, 20);
+            this.widthUpDown.TabIndex = 6;
+            this.widthUpDown.Value = new decimal(new int[] {
             24,
             0,
             0,
             0});
             // 
-            // numericUpDown2
+            // depthUpDown
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(243, 214);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.depthUpDown.Location = new System.Drawing.Point(243, 214);
+            this.depthUpDown.Maximum = new decimal(new int[] {
             48,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.depthUpDown.Minimum = new decimal(new int[] {
             12,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown2.TabIndex = 7;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.depthUpDown.Name = "depthUpDown";
+            this.depthUpDown.Size = new System.Drawing.Size(120, 20);
+            this.depthUpDown.TabIndex = 7;
+            this.depthUpDown.Value = new decimal(new int[] {
             12,
             0,
             0,
@@ -155,17 +157,17 @@ namespace MegaDesk___Yu_Chun
             this.label6.TabIndex = 8;
             this.label6.Text = "Number of Drawers: ";
             // 
-            // numericUpDown3
+            // drawerUpDown
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(562, 174);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.drawerUpDown.Location = new System.Drawing.Point(562, 174);
+            this.drawerUpDown.Maximum = new decimal(new int[] {
             7,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(73, 20);
-            this.numericUpDown3.TabIndex = 9;
+            this.drawerUpDown.Name = "drawerUpDown";
+            this.drawerUpDown.Size = new System.Drawing.Size(73, 20);
+            this.drawerUpDown.TabIndex = 9;
             // 
             // label7
             // 
@@ -193,6 +195,7 @@ namespace MegaDesk___Yu_Chun
             this.btnGetQuote.TabIndex = 12;
             this.btnGetQuote.Text = "Get Quote";
             this.btnGetQuote.UseVisualStyleBackColor = true;
+            this.btnGetQuote.Click += new System.EventHandler(this.btnGetQuote_Click);
             // 
             // btnCancel
             // 
@@ -204,31 +207,50 @@ namespace MegaDesk___Yu_Chun
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // deskMaterialComboBox
+            // 
+            this.deskMaterialComboBox.FormattingEnabled = true;
+            this.deskMaterialComboBox.Location = new System.Drawing.Point(562, 220);
+            this.deskMaterialComboBox.Name = "deskMaterialComboBox";
+            this.deskMaterialComboBox.Size = new System.Drawing.Size(121, 21);
+            this.deskMaterialComboBox.TabIndex = 14;
+            this.deskMaterialComboBox.SelectedIndexChanged += new System.EventHandler(this.DeskMaterialComboBox_SelectedIndexChanged);
+            // 
+            // deskDeliveryComboBox
+            // 
+            this.deskDeliveryComboBox.FormattingEnabled = true;
+            this.deskDeliveryComboBox.Location = new System.Drawing.Point(562, 265);
+            this.deskDeliveryComboBox.Name = "deskDeliveryComboBox";
+            this.deskDeliveryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.deskDeliveryComboBox.TabIndex = 15;
+            // 
             // AddQuote
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.deskDeliveryComboBox);
+            this.Controls.Add(this.deskMaterialComboBox);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnGetQuote);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.drawerUpDown);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.depthUpDown);
+            this.Controls.Add(this.widthUpDown);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.customerName);
             this.Controls.Add(this.label1);
             this.Name = "AddQuote";
             this.Text = "Add Quote";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddQuote_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.depthUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.drawerUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,18 +259,20 @@ namespace MegaDesk___Yu_Chun
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox customerName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown widthUpDown;
+        private System.Windows.Forms.NumericUpDown depthUpDown;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown drawerUpDown;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnGetQuote;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox deskMaterialComboBox;
+        private System.Windows.Forms.ComboBox deskDeliveryComboBox;
     }
 }

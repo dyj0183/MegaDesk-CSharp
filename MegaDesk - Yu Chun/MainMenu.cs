@@ -12,14 +12,17 @@ namespace MegaDesk___Yu_Chun
 {
     public partial class MainMenu : Form
     {
+        public FileService FileService { get; set; }
         public MainMenu()
         {
             InitializeComponent();
+
+            FileService = new FileService();
         }
 
         private void btnAddNewQuote_Click(object sender, EventArgs e)
         {
-            var addQuote = new AddQuote();
+            var addQuote = new AddQuote(FileService);
             addQuote.Tag = this; // this refers to the current object which is the main menu
             addQuote.Show(); // pop up a new addQuote window
             this.Hide(); // hide the mainMenu after the addQuote window pops up
