@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace MegaDesk___Yu_Chun
 {
@@ -16,6 +17,9 @@ namespace MegaDesk___Yu_Chun
 
     public class DeskQuote
     {
+        // private variable
+        private int[,] _rushOrderPrices;
+
         // constants
         private const decimal BASE_DESK_PRICE = 200.00M;
         private const decimal SURFACE_AREA_COST = 1.00M;
@@ -25,7 +29,6 @@ namespace MegaDesk___Yu_Chun
         private const decimal PINE_COST = 50.00M;
         private const decimal ROSEWOOD_COST = 300.00M;
         private const decimal VENEER_COST = 125.00M;
-
 
         // properties
         public Desk Desk { get; set; }
@@ -72,10 +75,53 @@ namespace MegaDesk___Yu_Chun
             }
         }
 
-        public decimal GetRushOrderCost()
+        // read from the "rushOrderPrices.txt" and save the data into the _rushOrderPrices array
+        private void getRushOrderPrices()
         {
-            return 0.00M;
+            // create a 3 by 3 multi dimensional array
+            _rushOrderPrices = new int[3, 3];
+
+            // define the file path
+            const string rushOrderPricesFile = @"rushOrderPrices.txt";
+
+            try
+            {
+                string[] prices = File.ReadAllLines(rushOrderPricesFile);
+
+                int i = 0, j = 0;
+
+                // there are 9 items in the prices, so it will loop through 9 times
+                foreach(string price in prices)
+                {
+                    // i is row, j is column
+                    _rushOrderPrices[i, j] = int.Parse(price);
+                    j++;
+
+                    // if the column is greater 2, move to a new row and start with a new column
+                    if (j > 2)
+                    {
+                        i++;
+                        j = 0;
+                    }
+                }
+
+                Console.WriteLine(_rushOrderPrices);
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
+
+
+
+        //public decimal GetRushOrderCost()
+        //{
+        //    return 0.00M;
+        //}
+
+
 
         // get the total price for the specific quote
         public decimal GetQuotePrice()
@@ -86,7 +132,10 @@ namespace MegaDesk___Yu_Chun
             decimal totalSurfaceAreaCost = GetTotalSurfaceAreaCost(surfaceArea);
             decimal totalDrawerCost = Desk.NumberOfDrawers * DRAWER_COST;
             decimal surfaceMaterialCost = GetMaterialCost();
-            decimal shippingCost = GetRushOrderCost();
+            //decimal shippingCost = GetRushOrderCost();
+
+            getRushOrderPrices();
+
 
             totalPrice = BASE_DESK_PRICE + totalSurfaceAreaCost + totalDrawerCost + surfaceMaterialCost;  
             return totalPrice;
