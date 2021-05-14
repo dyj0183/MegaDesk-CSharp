@@ -12,12 +12,14 @@ namespace MegaDesk___Yu_Chun
 {
     public partial class MainMenu : Form
     {
+        // properties
         public FileService FileService { get; set; }
+
         public MainMenu()
         {
             InitializeComponent();
 
-            FileService = new FileService();
+            FileService = new FileService(); // create a new object of FileService, as soon as the FileService object is created, it will load all the data (see FileService constructor)
         }
 
         private void btnAddNewQuote_Click(object sender, EventArgs e)

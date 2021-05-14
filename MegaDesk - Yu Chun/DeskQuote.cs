@@ -35,40 +35,46 @@ namespace MegaDesk___Yu_Chun
 
 
         // methods
+        // get the material cost based on the material the customer chose
+        public decimal GetMaterialCost()
+        {
+            switch (Desk.SurfaceMaterial)
+            {
+                case DesktopMaterial.Laminate:
+                    return LAMINATE_COST;
 
-        //public decimal GetMaterialCost()
-        //{
-        //    switch(Desk.SurfaceMaterial)
-        //    {
-        //        case Laminate:
-        //            return LAMINATE_COST;
+                case DesktopMaterial.Oak:
+                    return OAK_COST;
 
-        //        case Oak:
-        //            return OAK_COST;
+                case DesktopMaterial.Rosewood:
+                    return ROSEWOOD_COST;
 
-        //        case 2:
-        //            return ROSEWOOD_COST;
+                case DesktopMaterial.Veneer:
+                    return VENEER_COST;
 
-        //        case 3:
-        //            return VENEER_COST;
+                case DesktopMaterial.Pine:
+                    return PINE_COST;
+                default:
+                    return 0.00M;
+            }
+        }
 
-        //        case 4:
-        //            PINE_COST;
-        //    }
-        //}
-
+        // get the total price for the specific quote
         public decimal GetQuotePrice()
         {
             decimal totalPrice;
             decimal surfaceArea = Desk.Depth * Desk.Width;
             decimal totalSurfaceAreaCost = surfaceArea * SURFACE_AREA_COST;
             decimal totalDrawerCost = Desk.NumberOfDrawers * DRAWER_COST;
-            //decimal surfaceMaterialCost = getMaterialCost();
-            return totalSurfaceAreaCost; 
+            decimal surfaceMaterialCost = GetMaterialCost();
+
+            totalPrice = BASE_DESK_PRICE + totalSurfaceAreaCost + totalDrawerCost + surfaceMaterialCost;  
+            return totalPrice;
         }
 
         public void GetRushOrder()
         {
+
 
         }
     }
