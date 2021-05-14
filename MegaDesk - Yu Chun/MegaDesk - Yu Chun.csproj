@@ -152,7 +152,9 @@
     <None Include="Resources\cute desk.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\rushOrderPrices.txt" />
+    <Content Include="bin\Debug\rushOrderPrices.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

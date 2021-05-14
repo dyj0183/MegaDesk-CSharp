@@ -15,13 +15,16 @@ namespace MegaDesk___Yu_Chun
         // properties
         public FileService FileService { get; set; }
 
+        // constructor
         public MainMenu()
         {
             InitializeComponent();
 
-            FileService = new FileService(); // create a new object of FileService, as soon as the FileService object is created, it will load all the data (see FileService constructor)
+            // create a new object of FileService, as soon as the FileService object is created, it will load all the data (see FileService constructor)
+            FileService = new FileService(); 
         }
 
+        // methods
         private void btnAddNewQuote_Click(object sender, EventArgs e)
         {
             var addQuote = new AddQuote(FileService);

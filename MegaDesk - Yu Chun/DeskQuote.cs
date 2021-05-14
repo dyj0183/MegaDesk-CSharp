@@ -59,23 +59,37 @@ namespace MegaDesk___Yu_Chun
             }
         }
 
+        // get the total cost of surface area, if total is less or equal to 1000, then it is free
+        public decimal GetTotalSurfaceAreaCost(decimal surfaceArea)
+        {
+            if (surfaceArea > 1000)
+            {
+                return surfaceArea * SURFACE_AREA_COST;
+            }
+            else
+            {
+                return 0.00M;
+            }
+        }
+
+        public decimal GetRushOrderCost()
+        {
+            return 0.00M;
+        }
+
         // get the total price for the specific quote
         public decimal GetQuotePrice()
         {
             decimal totalPrice;
             decimal surfaceArea = Desk.Depth * Desk.Width;
-            decimal totalSurfaceAreaCost = surfaceArea * SURFACE_AREA_COST;
+
+            decimal totalSurfaceAreaCost = GetTotalSurfaceAreaCost(surfaceArea);
             decimal totalDrawerCost = Desk.NumberOfDrawers * DRAWER_COST;
             decimal surfaceMaterialCost = GetMaterialCost();
+            decimal shippingCost = GetRushOrderCost();
 
             totalPrice = BASE_DESK_PRICE + totalSurfaceAreaCost + totalDrawerCost + surfaceMaterialCost;  
             return totalPrice;
-        }
-
-        public void GetRushOrder()
-        {
-
-
         }
     }
 }

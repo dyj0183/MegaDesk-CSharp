@@ -12,7 +12,7 @@ namespace MegaDesk___Yu_Chun
     public class FileService
     {
         // constants
-        public const string path = @"C:\Users\dyj0183\source\repos\MegaDesk - Yu Chun\MegaDesk - Yu Chun\bin\Debug\quotes.json";
+        public const string Path = @"quotes.json";
         private List<DeskQuote> _quotes;
 
         // constructor, as soon as the FileService is created, load all the data into _quotes
@@ -43,9 +43,9 @@ namespace MegaDesk___Yu_Chun
         // retrieve all the data from quotes.json file, use "private" to protect this method
         private void LoadAllData()
         {
-            if (File.Exists(path))
+            if (File.Exists(Path))
             {
-                string data = File.ReadAllText(path); // data will be in json format
+                string data = File.ReadAllText(Path); // data will be in json format
                 _quotes = JsonSerializer.Deserialize<List<DeskQuote>>(data); // convert from json to List<DeskQuote>
             } 
             else
@@ -62,7 +62,7 @@ namespace MegaDesk___Yu_Chun
             string myJson = JsonSerializer.Serialize(_quotes);
 
             // create a file and write the json data into it
-            File.WriteAllText(path, myJson);
+            File.WriteAllText(Path, myJson);
            
             // console out to see the result when testing
             Console.WriteLine(myJson);
