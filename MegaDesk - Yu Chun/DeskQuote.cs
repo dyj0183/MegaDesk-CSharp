@@ -18,7 +18,7 @@ namespace MegaDesk___Yu_Chun
     public class DeskQuote
     {
         // private variable
-        private int[,] _rushOrderPrices;
+        private int[,] _rushOrderPrices;  // two dimentional array
 
         // constants
         private const decimal BASE_DESK_PRICE = 200.00M;
@@ -35,6 +35,7 @@ namespace MegaDesk___Yu_Chun
         public string QuoteDate { get; set; } // set the type to string because we will convert dateTime to string later
         public string CustomerName { get; set; }
         public Delivery DeliveryType { get; set; }
+        public decimal TotalPrice { get; set; }
 
 
         // methods
@@ -105,7 +106,19 @@ namespace MegaDesk___Yu_Chun
                     }
                 }
 
-                Console.WriteLine(_rushOrderPrices);
+                // testing purpose, console out to see if we get the right data saved in the _rushOrderPrices
+                int k = 0, h = 0;
+                for (int p = 0; p < 9; p++)
+                {
+                    Console.WriteLine(_rushOrderPrices[k, h]);
+                    h++;
+                    if (h > 2)
+                    {
+                        k++;
+                        h = 0;
+                    }
+                }
+                
 
             }
             catch(Exception e)
@@ -114,14 +127,60 @@ namespace MegaDesk___Yu_Chun
             }
         }
 
+        // based on the delivery type and the size of desk, return different price
+        public decimal GetShippingCost()
+        {
+            decimal surfaceArea = Desk.Depth * Desk.Width;
 
+            switch (DeliveryType)
+            {
+                case Delivery.Rush3Day:
+                    if (surfaceArea < 1000)
+                    {
+                        return _rushOrderPrices[0,0];
+                    } else if (surfaceArea >= 1000 && surfaceArea <= 2000)
+                    {
+                        return _rushOrderPrices[0, 1];
+                    } else
+                    {
+                        return _rushOrderPrices[0, 2];
+                    }
 
-        //public decimal GetRushOrderCost()
-        //{
-        //    return 0.00M;
-        //}
+                case Delivery.Rush5Day:
+                    if (surfaceArea < 1000)
+                    {
+                        return _rushOrderPrices[1, 0];
+                    }
+                    else if (surfaceArea >= 1000 && surfaceArea <= 2000)
+                    {
+                        return _rushOrderPrices[1, 1];
+                    }
+                    else
+                    {
+                        return _rushOrderPrices[1, 2];
+                    }
 
+                case Delivery.Rush7Day:
+                    if (surfaceArea < 1000)
+                    {
+                        return _rushOrderPrices[2, 0];
+                    }
+                    else if (surfaceArea >= 1000 && surfaceArea <= 2000)
+                    {
+                        return _rushOrderPrices[2, 1];
+                    }
+                    else
+                    {
+                        return _rushOrderPrices[2, 2];
+                    }
 
+                case Delivery.Normal14Day:
+                    return 0.00M;
+
+                default:
+                    return 0.00M;
+            }
+        }
 
         // get the total price for the specific quote
         public decimal GetQuotePrice()
@@ -132,12 +191,11 @@ namespace MegaDesk___Yu_Chun
             decimal totalSurfaceAreaCost = GetTotalSurfaceAreaCost(surfaceArea);
             decimal totalDrawerCost = Desk.NumberOfDrawers * DRAWER_COST;
             decimal surfaceMaterialCost = GetMaterialCost();
-            //decimal shippingCost = GetRushOrderCost();
 
-            getRushOrderPrices();
-
-
-            totalPrice = BASE_DESK_PRICE + totalSurfaceAreaCost + totalDrawerCost + surfaceMaterialCost;  
+            getRushOrderPrices(); // grab all the prices from the rushOrderPrices.txt file and save into _rushOrderPrices[,] 
+            decimal shippingCost = GetShippingCost();
+         
+            totalPrice = BASE_DESK_PRICE + totalSurfaceAreaCost + totalDrawerCost + surfaceMaterialCost + shippingCost;  
             return totalPrice;
         }
     }

@@ -66,11 +66,13 @@ namespace MegaDesk___Yu_Chun
             deskQuote.CustomerName = customerName.Text;
             deskQuote.DeliveryType = (Delivery)deskDeliveryComboBox.SelectedItem;
             deskQuote.Desk = desk; // comes from above, desk object
+            deskQuote.TotalPrice = deskQuote.GetQuotePrice();
 
             // use a file service class to manage all the file writing and adding
             FileService.AddQuote(deskQuote);
-  
-            Console.WriteLine(deskQuote.GetQuotePrice()); // don't I need to pass "desk" object into it?
+
+            // to see the result, testing purpose
+            Console.WriteLine(deskQuote.GetQuotePrice()); 
 
             this.Close(); // if customer clicked on "cancel", it will close the form which will call the Show() MainMenu function above
         }
